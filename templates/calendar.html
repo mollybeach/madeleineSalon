@@ -204,14 +204,14 @@ td, th, table {
     background-color: #EBC3C2;
     width: 100%;
 }
-.inputplaceholder{
-    opacity: 0.5;
-}
-.enteremailbutton {
+enteremailbutton {
     background-color: #E0C9C1;
 }
 .getemailform{
     border: 2px solid #E0C9C1;
+}
+::placeholder {
+  opacity: 0.5;
 }
 </style>
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -415,23 +415,23 @@ td, th, table {
                 <tbody class='apptbody space'>
                     <!-- FIRST NAME -->
                     <tr class='space'>
-                    <td  class='username space'>First Name</td><td> <input  id='firstname'class='username inputplaceholder'  type="text" placeholder=" First Name " required autocomplete='off' name="firstname" /></td>
+                    <td  class='username space'>First Name</td><td> <input  id='firstname'class='username'  type="text" placeholder=" First Name " required autocomplete='off' name="firstname" /></td>
                     </tr>
                     <!-- LAST NAME -->
                     <tr class='space'>  
-                    <td  class='username space'>Last Name</td><td> <input id='lastname' class='username inputplaceholder'  type="text" placeholder=" Last Name " required autocomplete='off' name="lastname"/></td>
+                    <td  class='username space'>Last Name</td><td> <input id='lastname' class='username'  type="text" placeholder=" Last Name " required autocomplete='off' name="lastname"/></td>
                     </tr> 
                     <!-- SERVICE NAME -->
                     <tr class='space'>  
-                    <td  class='username space'>Service Requested</td><td> <input id='service' class='username inputplaceholder'  type="text"   placeholder=" Service " required autocomplete='off' name="service"/></td>
+                    <td  class='username space'>Service Requested</td><td> <input id='service' class='username'  type="text"   placeholder=" Service " required autocomplete='off' name="service"/></td>
                     </tr>
                     <!-- EMAIL -->
                     <tr class='space'>
-                    <td  class='username space'>Email</td><td> <input id='email' class='username inputplaceholder'   type="text" placeholder=" Email "  required autocomplete='off' name="email"/></td>
+                    <td  class='username space'>Email</td><td> <input id='email' class='username'   type="text" placeholder=" Email "  required autocomplete='off' name="email"/></td>
                     </tr>
                     <!-- TELEPHONE -->
                     <tr class='space'>
-                    <td  class='username space'>Telephone</td><td> <input id='telephone' class='username inputplaceholder'  type="text"  placeholder=" Phone Number " required autocomplete='off' name="telephone"/></td>
+                    <td  class='username space'>Telephone</td><td> <input id='telephone' class='username'  type="text"  placeholder=" Phone Number " required autocomplete='off' name="telephone"/></td>
                     </tr>
                     </tbody>
                     </table>
@@ -441,11 +441,11 @@ td, th, table {
                     <!-- APPOINTMENT DATE -->
                     <table  class='appttable space' border="1"> 
                     <tr class='space'>
-                    <td  class='username space'>Appointment Date</td><td> <input  id='appointmentdate'class='username inputplaceholder'  type="text" placeholder=" Appointment Date" required autocomplete='off' name="appointmentdate" /></td>
+                    <td  class='username space'>Appointment Date</td><td> <input  id='appointmentdate'class='usernamer'  type="text" placeholder=" Appointment Date" required autocomplete='off' name="appointmentdate" /></td>
                     </tr>
                     <!-- TIME -->
                     <tr class='space'>
-                    <td  class='username space'>Appointment Time</td><td> <input id='time' class='username inputplaceholder'   type="text"  placeholder=" Time " required autocomplete='off' name="time"/></td>
+                    <td  class='username space'>Appointment Time</td><td> <input id='time' class='username'   type="text"  placeholder=" Time " required autocomplete='off' name="time"/></td>
                     </tr>
                     </tbody>
                 </table>
