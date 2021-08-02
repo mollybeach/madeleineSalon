@@ -209,37 +209,20 @@ td, th, table {
 .inputplaceholder{
     opacity: 0.5;
 }
-
- 
 </style>
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <script src="https://res.cloudinary.com/madeleinesalondecoiffure/raw/upload/v1627610374/jquerydatepicker_tgymdk.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
-        <script>
+            <script>
 
 /*=================================================================================================*/
 /*========================================VANILLA JS===================================================*/
 /*=================================================================================================*/
-// remove border if the selected date is today's date
-function todayEqualActive(){
-  setTimeout(function(){
-    if($(".ui-datepicker-current-day").hasClass("ui-datepicker-today")){
-      $(".ui-datepicker-today")
-        .children(".ui-state-default")
-        .css("border-bottom", "0");
-    }
-    else{
-      $(".ui-datepicker-today")
-        .children(".ui-state-default")
-        .css("border-bottom", "2px solid rgba(53,60,66,0.5)");
-    }
-  }, 20);
-}
+
 /******************SMOOTH PAGE LOADING***********/
         const links = document.querySelectorAll(".page-header ul a");
-
         for (const link of links) {
             link.addEventListener("click", clickHandler);
         }
@@ -256,24 +239,6 @@ function todayEqualActive(){
             for (let i = 0; i < Json.length; i++) {
             textlist += "<input type='radio'  name='user' id=" + Json[i].pk + ">" + Json[i].fields['firstname'] + " " + Json[i].fields['lastname'] + "<br>"
             }
-            /*  $('#firstname').val("firstname")
-            $('#lastname').val("lastname")
-            $('#email').val("email")
-            $('#service').val("service")
-            $('telephone').val("telephone")
-            $('#appointmentdate').val("appointmentdate")
-            $('time').val("time")*/
-            if (textlist == "")
-                $("#userlist").html("No users available, add one below please")
-            else
-                $("#userlist").html(textlist)
-            }    
-            $("#userlist").ready(function() {
-            $.ajax({
-                url: 'users/',
-                type: 'GET',
-                success: getUsers,
-            });
         });
 
 /*************************EVENTS LIST*****************************/
@@ -286,23 +251,12 @@ function todayEqualActive(){
             let obj = {
                 "id": event.pk,
                 "title": event.fields["firstname"] + " " + event.fields["lastname"] + " " + event.fields["service"],
-                //"start": event.fields["telephone"] ,
-               // "end": event.fields["appointmentdate"] 
-               // "allDay": false,
-               // start:  '2010-01-01T14:30:00',
-               //convert appointmentdateTime back to dateTime floatformat
-               // start: moment(event.fields["appointmentdateTime"]).format('YYYY-MM-DDTHH:mm:ss')
-              // "start":   event.fields["appointmentdate"]+"T"+event.fields["time"] ,
-              //convert appointmentdateTime back to dateTime format to be read by fullcalendar
                 start: moment(event.fields["time"]).format('YYYY-MM-DDTHH:mm:ss')
-              //"start":   event.fields["appointmentdate"]
-               //end:  events.fields[appointmentdate] + (event.fields["telephone"]+30)
-               //add 2 hours to the start time value  and make it my end time and create another obj.value called end that has the saame date just2 hours add to time 
+               //end:    start: moment(event.fields["time"]).format('YYYY-MM-DDTHH:mm:ss')
             }
             events.push(obj);
         }
     console.log(events);
-
 /*****************************CURRENT TIME***************************/
 
         let currentDate = new Date();
@@ -330,8 +284,6 @@ function todayEqualActive(){
 /*========================================JQUERY============================================================*/
 /*=========================================================================================================*/
 
-
-
 /************************CALENDAR**********************/
 
     $(document).ready(function() {
@@ -350,11 +302,6 @@ function todayEqualActive(){
                 events: events,
                 allDaySlot: false,
                 selectHelper: true,
-            
- /*when i click on the full calendar day click the jquery timepicker will be shown*/
- // on day click the timepicker will render and the time will be set to the timepicker input
-
-            /*when i click on the full calendar day click the jquery timepicker will be shown*/
         
         dayClick: function(date, jsEvent, view) {
             if(view.name == 'month' || view.name == 'agendaWeek') {
@@ -366,9 +313,8 @@ function todayEqualActive(){
             $("#appointmentdate").val(justtheday);
             $("#time").val(justthetime);
         },
-   
         eventClick: function(calEvent, jsEvent, view) {
-               {% if user.is_authenticated%}
+            {% if user.is_authenticated%}
             if (confirm("Are you sure you want to delete the event: "+ calEvent.title +  "  ?" )){
             // your deletion code
             $.ajax({
@@ -382,17 +328,15 @@ function todayEqualActive(){
                 });
             }
             return false;
-         
                 {% else%}
         alert('Clicked on: ' + calEvent.title + '  Sorry Madeleine is unavailable during this time please select another time slot ');
         
     {% endif %}
-       }
+    }
     
     }); 
 
 /*************************END OF CALENDAR*******************/
-/****************************ADD *********************/
 
             $("#add").on("click", function () {
             let firstname = $('input[name=firstname]').val()
@@ -428,10 +372,6 @@ function todayEqualActive(){
             });
 
     });
-
-/**************************SELECT TIME *********************/
-
-
 /*======================================================================================================*/
 /*========================================END OF JQUERY===================================================*/
 /*=======================================================================================================*/
@@ -461,24 +401,17 @@ function todayEqualActive(){
             </ul>
         </nav>
     </header>
+<!-- MAIN-->
     <main class='maincenter'>
-        <!-- MAIN-
-        <section class='maincenter'>
-        <center > ->
-            <h1 class='greeting-calendar'>Select date for Appointment with Madeleine Salon de Coiffure</h1>
-            <h2>Please complete form</h2><br/> -->
-            
-
 <!-- APPOINTMENT FORM-->
         <form >
         <br>
         <br>
 {% csrf_token %}
                 <table  class='appttable space' border="1"> 
-                <caption class='formcaption' >Please fill out form </caption>
-                <caption class='formcaption'> Select appointment date with Madeleine Salon de Coiffure</caption>
+                <caption class='formcaption'> Please fill out form</caption>
+                <caption class='formcaption' >To request an Appointment with Madeleine Saloon de Coiffure </caption>
                 <tbody class='apptbody space'>
-                <!---  <div id='userlist' class='apptform '> </div>-->
                     <!-- FIRST NAME -->
                     <tr class='space'>
                     <td  class='username space'>First Name</td><td> <input  id='firstname'class='username inputplaceholder'  type="text" placeholder=" First Name " required autocomplete='off' name="firstname" /></td>
@@ -505,7 +438,7 @@ function todayEqualActive(){
                     <div class='formcaption'> Please select date and time from calendar</div> <br><br>
                     <div id="calendar"> </div> <br><br>
                     <!-- APPOINTMENT DATE -->
-                        <table  class='appttable space' border="1"> 
+                    <table  class='appttable space' border="1"> 
                     <tr class='space'>
                     <td  class='username space'>Appointment Date</td><td> <input  id='appointmentdate'class='username inputplaceholder'  type="text" placeholder=" Appointment Date" required autocomplete='off' name="appointmentdate" /></td>
                     </tr>
@@ -518,19 +451,8 @@ function todayEqualActive(){
                 </table>
                 <input type="submit" name="add" id='add' value="Add Appointment" style="float:right" class="btn"/>
                 <br><br>
-    <!--  
- {% if messages%}
-{% for message in messages%}
-<h1 class="messageweb"> {{message}} </h1>
-{% endfor%}
-{% endif%}--> 
-
-            <!-- <input  id='details' type="button"  value="View Appoinment" class="btn"/>-->
-            <!--- <input type="button" name="update" id='update' value="Modify Appointment" class="btn"/> -->
                 <br>
-            <!---   <input type="button" name="delete" id='delete' value="Delete Appointment" class="btn"/>-->
         </form>
-  
     <br><br><br> 
     </main>
 <!--FOOTER-->
@@ -590,10 +512,6 @@ function todayEqualActive(){
                     </div>
                 </div>
                 <br><br>
-                        
-
-                </footer>
-                <!-- </center>
-</section> -->
+        </footer>
     </body>
 </html>
