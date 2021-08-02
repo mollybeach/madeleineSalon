@@ -8,8 +8,6 @@
             <link href='https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap' >
             <link href="https://res.cloudinary.com/madeleinesalondecoiffure/raw/upload/v1627610464/jquery-ui.min_vcocc8.css"  rel="stylesheet"  >
             <link rel="stylesheet" href="https://res.cloudinary.com/madeleinesalondecoiffure/raw/upload/v1627775345/calender_x3yfqn.css" />
-            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 .maincenter{
     border-radius: 20px;
@@ -65,13 +63,13 @@ header {
     }
 }
     
-
 a:link {
     font-weight: bold;
 }
 a:hover {
     color: #534f4f;
 }
+
 .fc-content{
     background-color: #909fbb;
     color: #fafafa;
@@ -79,8 +77,8 @@ a:hover {
     border-radius: 25px;
     border: 1px solid #909fbb;
     background: #909fbb;
-
 }
+
 .fc-event{
     border: 1px solid #909fbb;
     background-color: #909fbb;
@@ -211,9 +209,7 @@ td, th, table {
 }
 </style>
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <script src="https://res.cloudinary.com/madeleinesalondecoiffure/raw/upload/v1627610374/jquerydatepicker_tgymdk.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.js"></script>
             <script>
 
@@ -256,7 +252,7 @@ td, th, table {
             }
             events.push(obj);
         }
-    console.log(events);
+
 /*****************************CURRENT TIME***************************/
 
         let currentDate = new Date();
@@ -333,7 +329,6 @@ td, th, table {
         
     {% endif %}
     }
-    
     }); 
 
 /*************************END OF CALENDAR*******************/
